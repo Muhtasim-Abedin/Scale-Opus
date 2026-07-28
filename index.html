@@ -79,6 +79,19 @@
             contain-intrinsic-size: 900px;
         }
 
+
+        #about,
+        #solutions,
+        #how-we-work,
+        #growth-engine,
+        #pricing,
+        #reviews,
+        #connect,
+        .scale-footer {
+            content-visibility: auto;
+            contain-intrinsic-size: 900px;
+        }
+
         .dashboard-container {
             perspective: 1200px;
             transform-style: preserve-3d;
@@ -371,6 +384,16 @@
             will-change: transform, opacity, filter;
         }
 
+        /* support both image element and background-image approaches */
+        .solutions-carousel-card-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
         .solutions-carousel-card img {
             display: block;
             width: 100%;
@@ -611,6 +634,7 @@
             }
         }
 
+
         @keyframes radar-pulse {
             0% { transform: scale(0.95); opacity: 0.8; }
             50% { transform: scale(1.05); opacity: 0.4; }
@@ -729,7 +753,11 @@
             display: inline-flex;
             align-items: center;
             min-height: 4.75rem;
-            color: #cbd5e1;
+            color: #ffffff !important;
+            font-size: 13px !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.08em !important;
+            text-shadow: 0 1px 12px rgba(255, 255, 255, 0.08);
             transition: color 180ms ease;
         }
         .site-nav-link::after {
@@ -776,6 +804,7 @@
         }
         .how-work-card {
             display: block;
+            position: sticky;
             overflow: hidden;
             aspect-ratio: 1461 / 563;
             border-radius: clamp(1.35rem, 2vw, 1.75rem);
@@ -788,807 +817,112 @@
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
             transform: scale(1.035);
             transform-origin: center;
             backface-visibility: hidden;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
         }
         .how-work-card-image--deploy {
-            object-position: center 43%;
+            background-position: center 43%;
             transform: scale(1.1);
+        }
+        #solutions img,
+        #how-we-work img {
+            pointer-events: none !important;
+            user-select: none !important;
+            -webkit-user-drag: none !important;
+        }
+        .how-work-card::after {
+            content: "";
+            position: absolute;
+            inset: 0 0 0 54%;
+            z-index: 1;
+            background:
+                radial-gradient(circle at 92% 8%, rgba(124, 58, 237, 0.24), transparent 34%),
+                linear-gradient(90deg, rgba(8, 12, 21, 0.96), rgba(10, 14, 24, 0.99));
+            pointer-events: none;
+        }
+        .how-work-card-copy {
+            position: absolute;
+            top: 22%;
+            right: 6.2%;
+            z-index: 2;
+            width: 34%;
+            color: #f8fafc;
+        }
+        .how-work-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-bottom: 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #c4b5fd;
+        }
+        .how-work-card-kicker span:first-child {
+            padding: 0.3rem 0.65rem;
+            border-radius: 999px;
+            border: 1px solid rgba(196, 181, 253, 0.38);
+            background: rgba(124, 58, 237, 0.13);
+        }
+        .how-work-card-title {
+            margin: 0 0 1.45rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.35rem;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: 0;
+            color: #ffffff;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.42);
+        }
+        .how-work-card-description {
+            margin: 0;
+            max-width: 27rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.55;
+            color: #e2e8f0;
+            text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
         }
         @media (max-width: 767px) {
             .how-work-card {
                 border-radius: 0.85rem;
                 box-shadow: 0 18px 45px rgba(2, 6, 23, 0.16);
             }
-        }
-        .section-heading {
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            letter-spacing: -0.055em;
-            line-height: 0.95;
-        }
-        .section-heading--xl { font-size: clamp(3.5rem, 6.2vw, 6rem); }
-        .section-heading--lg { font-size: clamp(3rem, 5vw, 4.5rem); }
-        .section-heading--md { font-size: clamp(2.65rem, 4vw, 3.75rem); }
-        .connect-heading { line-height: 1.08; }
-        .connect-heading .text-brandOrange {
-            display: inline-block;
-            margin-top: 0.08em;
-        }
-        .back-to-top-button {
-            width: 3.25rem;
-            height: 3.75rem;
-            padding: 0;
-            border-radius: 50%;
-        }
-        @media (min-width: 1024px) {
-            .site-nav { display: flex !important; }
-            .site-menu-toggle { display: none !important; }
-            .site-mobile-menu { display: none !important; }
-        }
-        @media (min-width: 1280px) {
-            .site-nav { gap: 2.25rem; }
-        }
-
-        /* Interactive wallet pricing */
-        .pricing-wallet-section {
-            isolation: isolate;
-            background: #ffffff;
-        }
-        .pricing-eyebrow-shift {
-            transform: translateY(-1cm);
-        }
-        .pricing-wallet-section::before {
-            display: none;
-        }
-        .pricing-wallet-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            align-items: start;
-            gap: clamp(1.5rem, 3vw, 4rem);
-        }
-        .pricing-wallet {
-            --wallet-accent: #ff5e1a;
-            color: #f8fafc;
-            min-width: 0;
-        }
-        .pricing-wallet--cyan { --wallet-accent: #00f0ff; }
-        .pricing-wallet--purple { --wallet-accent: #8b5cf6; }
-        .pricing-wallet > summary {
-            position: relative;
-            display: block;
-            min-height: 20.25rem;
-            padding-top: 5.4rem;
-            cursor: pointer;
-            list-style: none;
-            border-radius: 1.5rem 1.5rem 0 0;
-        }
-        .pricing-wallet > summary::-webkit-details-marker { display: none; }
-        .pricing-wallet > summary::marker { content: ''; }
-        .pricing-wallet > summary:focus-visible {
-            outline: 3px solid #00f0ff;
-            outline-offset: 6px;
-        }
-        .pricing-bank-card {
-            position: absolute;
-            left: 8%;
-            width: 84%;
-            height: 6.7rem;
-            overflow: hidden;
-            border-radius: 0.7rem 0.7rem 0 0;
-            border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 0 18px 34px rgba(0,0,0,0.38);
-            transition: transform 420ms cubic-bezier(.2,.75,.25,1), height 420ms cubic-bezier(.2,.75,.25,1);
-        }
-        .pricing-bank-card--gold {
-            top: 0;
-            transform: translateY(0.7rem) scale(0.9);
-            background: linear-gradient(125deg, #e6c474, #a88642);
-            color: #352710;
-            z-index: 1;
-        }
-        .pricing-bank-card--silver {
-            top: 2.9rem;
-            background: linear-gradient(125deg, #eceef1, #9ea4af);
-            color: #090b12;
-            z-index: 2;
-        }
-        .pricing-card-chip {
-            position: absolute;
-            left: 1.25rem;
-            top: 1rem;
-            width: 2rem;
-            height: 1.35rem;
-            border: 1px solid rgba(8, 11, 18, 0.2);
-            border-radius: 0.3rem;
-            box-shadow: inset 0 0 0 3px rgba(255,255,255,0.12);
-        }
-        .pricing-card-brand {
-            position: absolute;
-            right: 1rem;
-            top: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-        }
-        .pricing-card-price {
-            position: absolute;
-            left: 1.4rem;
-            bottom: 0.75rem;
-            display: flex;
-            align-items: baseline;
-            gap: 0.55rem;
-            opacity: 0;
-            transform: translateY(0.65rem);
-            transition: opacity 240ms ease 120ms, transform 300ms ease 120ms;
-        }
-        .pricing-card-price strong {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(1.8rem, 2.6vw, 2.55rem);
-            line-height: 1;
-            letter-spacing: -0.045em;
-        }
-        .pricing-card-price span {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            font-weight: 700;
-        }
-        .pricing-wallet-face,
-        .pricing-wallet-body {
-            position: relative;
-            z-index: 3;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.065);
-            background:
-                radial-gradient(ellipse at 18% -10%, rgba(42, 129, 91, 0.42) 0%, rgba(13, 61, 42, 0.2) 34%, transparent 58%),
-                radial-gradient(ellipse at 82% 112%, rgba(20, 91, 63, 0.3) 0%, transparent 52%),
-                linear-gradient(145deg, #103f2d 0%, #082b1e 42%, #041d14 72%, #02130d 100%);
-            box-shadow: 0 14px 0 rgba(0,0,0,0.42), 0 28px 50px rgba(0,0,0,0.28), inset 0 1px rgba(142,220,182,0.1), inset 0 -24px 42px rgba(0,0,0,0.16);
-        }
-        .pricing-wallet-face::before,
-        .pricing-wallet-body::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            border-radius: inherit;
-            pointer-events: none;
-            background:
-                linear-gradient(112deg, transparent 5%, rgba(105, 196, 151, 0.2) 22%, rgba(4, 28, 19, 0.32) 38%, transparent 54%),
-                linear-gradient(102deg, transparent 43%, rgba(76, 166, 124, 0.14) 58%, rgba(0, 0, 0, 0.28) 73%, transparent 88%);
-            filter: blur(12px);
-            transform: scale(1.08);
-            opacity: 0.86;
-        }
-        .pricing-wallet-face::after,
-        .pricing-wallet-body::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            border-radius: inherit;
-            pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.62'/%3E%3C/svg%3E");
-            background-size: 180px 180px;
-            mix-blend-mode: soft-light;
-            opacity: 0.13;
-        }
-        .pricing-wallet-face > *,
-        .pricing-wallet-body > * {
-            position: relative;
-            z-index: 1;
-        }
-        .pricing-wallet-face {
-            min-height: 14.8rem;
-            padding: 2.2rem 1.35rem;
-            border-radius: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            transition: min-height 420ms cubic-bezier(.2,.75,.25,1), padding 420ms cubic-bezier(.2,.75,.25,1), border-radius 250ms ease;
-        }
-        .pricing-wallet-icon {
-            margin-bottom: 0.9rem;
-            color: var(--wallet-accent);
-            font-size: 1.45rem;
-            filter: drop-shadow(0 0 10px color-mix(in srgb, var(--wallet-accent) 32%, transparent));
-        }
-        .pricing-wallet-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(0.82rem, 1.25vw, 1rem);
-            font-weight: 700;
-            line-height: 1.35;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-        .pricing-wallet-hint {
-            margin-top: 0.75rem;
-            color: #a8b1c3;
-            font-size: 0.72rem;
-            transition: opacity 180ms ease;
-        }
-        .pricing-wallet-chevron {
-            margin-top: 1.1rem;
-            color: var(--wallet-accent);
-            font-size: 0.75rem;
-            transition: transform 250ms ease;
-        }
-        .pricing-wallet-expand {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 420ms cubic-bezier(.2,.75,.25,1);
-        }
-        .pricing-wallet-expand-inner { overflow: hidden; }
-        .pricing-wallet-body {
-            min-height: 26rem;
-            margin-top: -1px;
-            padding: 0 2rem 2rem;
-            border-top: 0;
-            border-radius: 0 0 1.5rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 14px 0 rgba(0,0,0,0.38), 0 28px 50px rgba(0,0,0,0.26);
-        }
-        .pricing-wallet-copy {
-            min-height: 5.35rem;
-            color: #cbd5e1;
-            font-size: 0.74rem;
-            line-height: 1.65;
-        }
-        .pricing-wallet-features {
-            margin: 1.3rem 0 1.6rem;
-            padding-top: 1.25rem;
-            border-top: 1px solid rgba(148,163,184,0.15);
-            display: grid;
-            gap: 0.72rem;
-            color: #f1f5f9;
-            font-size: 0.7rem;
-            line-height: 1.45;
-        }
-        .pricing-wallet-features li { display: flex; align-items: flex-start; gap: 0.65rem; }
-        .pricing-wallet-features i { color: var(--wallet-accent); margin-top: 0.14rem; }
-        .pricing-wallet-cta {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 3rem;
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border-radius: 0.7rem;
-            background: #252832;
-            color: #fff;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.66rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-align: center;
-            text-transform: uppercase;
-            transition: background-color 220ms ease, color 220ms ease, box-shadow 220ms ease;
-            margin-top: auto;
-        }
-        .pricing-wallet-cta:hover,
-        .pricing-wallet-cta:focus-visible {
-            background: var(--wallet-accent);
-            color: #050608;
-            box-shadow: 0 0 24px color-mix(in srgb, var(--wallet-accent) 28%, transparent);
-        }
-        .pricing-wallet[open] .pricing-bank-card--gold { transform: translateY(-0.6rem) scale(0.9); }
-        .pricing-wallet[open] .pricing-bank-card--silver { height: 8.7rem; transform: translateY(-0.15rem); }
-        .pricing-wallet[open] .pricing-card-price { opacity: 1; transform: translateY(0); }
-        .pricing-wallet[open] > summary {
-            min-height: 18rem;
-            padding-top: 11.4rem;
-        }
-        .pricing-wallet[open] .pricing-wallet-face {
-            min-height: 6.6rem;
-            padding: 1.5rem 2rem 1rem;
-            align-items: flex-start;
-            text-align: left;
-            border-radius: 1.5rem 1.5rem 0 0;
-            box-shadow: none;
-        }
-        .pricing-wallet[open] .pricing-wallet-icon { margin-bottom: 0.45rem; font-size: 1rem; }
-        .pricing-wallet[open] .pricing-wallet-hint { position: absolute; opacity: 0; pointer-events: none; }
-        .pricing-wallet[open] .pricing-wallet-chevron { position: absolute; right: 1.7rem; top: 1.8rem; margin: 0; transform: rotate(180deg); }
-        .pricing-wallet[open] .pricing-wallet-expand { grid-template-rows: 1fr; }
-
-        .scale-footer {
-            background: linear-gradient(100deg, #10151d 0%, #090b11 58%, #160d14 100%);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            color: #f8fafc;
-            font-family: 'Inter', sans-serif;
-        }
-        .scale-footer-inner { max-width: 80rem; margin: 0 auto; padding: 1.9rem 1.5rem 1.2rem; }
-        .scale-footer-grid {
-            display: grid;
-            grid-template-columns: 1.35fr 0.9fr 1fr 1.15fr;
-            gap: clamp(2.5rem, 5vw, 5.5rem);
-            align-items: start;
-        }
-        .scale-footer-brand { display: flex; align-items: center; gap: 0.9rem; }
-        .scale-footer-logo {
-            display: flex;
-            width: 3rem;
-            height: 3rem;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-radius: 0.55rem;
-            background: #ffffff;
-            box-shadow: 0 0 24px rgba(255, 94, 26, 0.18);
-        }
-        .scale-footer-logo img { width: 100%; height: 100%; object-fit: contain; }
-        .scale-footer-name {
-            color: #ffffff;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.35rem;
-            font-weight: 900;
-            letter-spacing: 0;
-        }
-        .scale-footer-slogan {
-            margin-top: 1.1rem;
-            color: #e5e7eb;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-        }
-        .scale-footer-rule { width: 4rem; height: 1px; margin-top: 0.75rem; background: #ff5e1a; }
-        .scale-footer-copy {
-            max-width: 19rem;
-            margin-top: 1rem;
-            color: #cbd5e1;
-            font-size: 0.86rem;
-            font-weight: 600;
-            line-height: 1.55;
-        }
-        .scale-footer-socials { display: flex; gap: 0.85rem; margin-top: 1.1rem; }
-        .scale-footer-socials a {
-            display: flex;
-            width: 2.6rem;
-            height: 2.6rem;
-            align-items: center;
-            justify-content: center;
-            border: 1.5px solid rgba(15, 23, 42, 0.22);
-            border-radius: 0.45rem;
-            color: #ffffff;
-            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.45);
-            transition: color 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
-        }
-        .scale-footer-socials a:hover { border-color: #ff5e1a; color: #ff5e1a; background: rgba(255,94,26,0.08); box-shadow: 0 12px 28px rgba(255, 94, 26, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.55); }
-        .scale-footer-title {
-            color: #ffffff;
-            font-size: 0.95rem;
-            font-weight: 900;
-            letter-spacing: 0;
-            text-transform: uppercase;
-        }
-        .scale-footer-links,
-        .scale-footer-contact {
-            display: flex;
-            flex-direction: column;
-            gap: 0.62rem;
-            margin-top: 1.1rem;
-            color: #d1d5db;
-            font-size: 0.84rem;
-            font-weight: 700;
-        }
-        .scale-footer a { color: inherit; text-decoration: none; transition: color 180ms ease; }
-        .scale-footer a:hover { color: #ffffff; }
-        .scale-footer-contact a { display: flex; align-items: center; gap: 0.95rem; }
-        .scale-footer-contact i { width: 1rem; color: #ffffff; text-align: center; }
-        .scale-footer-bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-top: 1.45rem;
-            padding-top: 0.95rem;
-            border-top: 1px solid rgba(255,255,255,0.12);
-            color: #d1d5db;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-        .scale-footer-bottom-links { display: flex; gap: 2rem; }
-
-        #connect {
-            background: #ffffff !important;
-            border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
-            color: #030718;
-        }
-        #connect .section-heading {
-            color: #030718 !important;
-        }
-        #connect p,
-        #connect label,
-        #connect span {
-            color: #334155;
-        }
-        #connect .inline-flex span:last-child,
-        #connect .text-brandOrange {
-            color: #ff5e1a !important;
-        }
-        #connect .bg-slate-900,
-        #connect .bg-\[\#0e1017\] {
-            background: #f8fafc !important;
-            border-color: rgba(15, 23, 42, 0.1) !important;
-        }
-        #connect .bg-black\/60 {
-            background: #ffffff !important;
-            border-color: rgba(15, 23, 42, 0.14) !important;
-        }
-        #connect input,
-        #connect select,
-        #connect textarea {
-            color: #ffffff !important;
-            -webkit-text-fill-color: #ffffff !important;
-            caret-color: #ffffff;
-        }
-        #connect input::placeholder,
-        #connect textarea::placeholder {
-            color: #94a3b8 !important;
-        }
-        #connect a:not(.bg-brandOrange) {
-            color: #030718 !important;
-        }
-        #connect a:hover {
-            color: #ff5e1a !important;
-        }
-
-        @media (max-width: 900px) {
-            .pricing-wallet-grid { grid-template-columns: 1fr; max-width: 30rem; margin-inline: auto; gap: 3rem; }
-            .scale-footer-grid { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 480px) {
-            .pricing-wallet > summary { min-height: 18.8rem; }
-            .pricing-wallet-face { min-height: 13.4rem; }
-            .pricing-wallet-body { min-height: 0; padding-inline: 1.35rem; }
-            .pricing-wallet-copy { min-height: 0; }
-        }
-
-        .review-reel-shell {
-            width: 100%;
-            max-width: 43rem;
-            margin-inline: auto;
-        }
-        .review-reel-stage {
-            position: relative;
-            height: 42rem;
-            overflow: hidden;
-            cursor: grab;
-            touch-action: pan-x;
-            user-select: none;
-            isolation: isolate;
-            border-radius: 2rem;
-            outline: none;
-        }
-        .review-reel-stage.is-dragging { cursor: grabbing; }
-        .review-reel-stage:focus-visible {
-            box-shadow: 0 0 0 2px #00f0ff, 0 0 0 7px rgba(0, 240, 255, 0.12);
-        }
-        .review-reel-item {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: min(100% - 1.5rem, 39rem);
-            aspect-ratio: 1.58 / 1;
-            translate: -50% -50%;
-            transform-origin: center;
-            will-change: transform, opacity, filter;
-            pointer-events: none;
-        }
-        .review-reel-card {
-            position: relative;
-            display: flex;
-            height: 100%;
-            flex-direction: column;
-            overflow: hidden;
-            padding: clamp(1.45rem, 3vw, 2.25rem);
-            border: 1px solid rgba(255,255,255,0.66);
-            border-radius: clamp(1.35rem, 3vw, 2rem);
-            background:
-                radial-gradient(circle at 86% 12%, rgba(255,255,255,0.82), transparent 28%),
-                radial-gradient(circle at 8% 90%, var(--review-glow), transparent 36%),
-                var(--review-surface, linear-gradient(135deg, #fff7ed 0%, #ffb86b 38%, #ff5e1a 100%));
-            box-shadow:
-                0 34px 80px rgba(3, 7, 18, 0.28),
-                0 18px 45px var(--review-glow),
-                inset 0 1px 0 rgba(255, 255, 255, 0.72),
-                inset 0 -28px 55px rgba(3, 7, 18, 0.12);
-        }
-        .review-reel-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background:
-                linear-gradient(120deg, rgba(255,255,255,0.34), transparent 26%, rgba(255,255,255,0.2) 52%, transparent 74%),
-                repeating-linear-gradient(135deg, rgba(255,255,255,0.16) 0 1px, transparent 1px 9px);
-            mix-blend-mode: soft-light;
-            opacity: 0.76;
-            pointer-events: none;
-        }
-        .review-reel-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background-image:
-                radial-gradient(rgba(255,255,255,0.55) 0.55px, transparent 0.55px),
-                radial-gradient(rgba(3,7,18,0.12) 0.45px, transparent 0.45px);
-            background-position: 0 0, 3px 3px;
-            background-size: 6px 6px;
-            opacity: 0.24;
-            pointer-events: none;
-        }
-        .review-card-sheen {
-            position: absolute;
-            inset: -55% auto auto -20%;
-            width: 68%;
-            height: 190%;
-            transform: rotate(24deg);
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.34), transparent);
-            opacity: 0.85;
-            pointer-events: none;
-        }
-        .review-card-topline,
-        .review-card-footer {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-        }
-        .review-card-category,
-        .review-card-number,
-        .review-card-detail {
-            font-family: 'JetBrains Mono', monospace;
-            text-transform: uppercase;
-        }
-        .review-card-category {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.55rem;
-            color: color-mix(in srgb, var(--review-ink, #111827) 86%, #ffffff);
-            font-size: 0.58rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-        }
-        .review-card-dot {
-            width: 0.42rem;
-            height: 0.42rem;
-            border-radius: 999px;
-            background: var(--review-accent);
-            box-shadow: 0 0 14px var(--review-accent);
-        }
-        .review-card-number {
-            color: color-mix(in srgb, var(--review-muted, #475569) 86%, #ffffff);
-            font-size: 0.56rem;
-            font-weight: 700;
-            letter-spacing: 0.16em;
-            white-space: nowrap;
-        }
-        .review-card-quote-icon {
-            position: relative;
-            z-index: 2;
-            width: clamp(1.7rem, 3vw, 2.25rem);
-            height: clamp(1.7rem, 3vw, 2.25rem);
-            margin-top: clamp(0.75rem, 1.6vw, 1.1rem);
-            color: var(--review-ink, #111827);
-            filter: drop-shadow(0 10px 18px rgba(255,255,255,0.28));
-            opacity: 0.74;
-        }
-        .review-card-quote {
-            position: relative;
-            z-index: 2;
-            max-width: 34rem;
-            margin: clamp(0.5rem, 1.2vw, 0.8rem) 0 auto;
-            color: var(--review-ink, #111827);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(0.94rem, 1.55vw, 1.18rem);
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            line-height: 1.25;
-        }
-        .review-card-footer {
-            margin-top: 1rem;
-            padding-top: clamp(0.85rem, 1.8vw, 1.2rem);
-            border-top: 1px solid rgba(255, 255, 255, 0.42);
-        }
-        .review-card-stars {
-            display: flex;
-            gap: 0.24rem;
-            color: var(--review-ink, #111827);
-            filter: drop-shadow(0 1px 0 rgba(255,255,255,0.38));
-        }
-        .review-card-stars svg { width: 0.72rem; height: 0.72rem; }
-        .review-card-detail {
-            margin-top: 0.48rem;
-            color: var(--review-muted, #475569);
-            font-size: 0.54rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-        }
-        .review-card-monogram {
-            display: grid;
-            width: 2.5rem;
-            height: 2.5rem;
-            place-items: center;
-            border: 1px solid rgba(255,255,255,0.48);
-            border-radius: 0.8rem;
-            background: rgba(255,255,255,0.28);
-            color: var(--review-ink, #111827);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.62rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-        }
-        .review-reel-centerline {
-            position: absolute;
-            z-index: 0;
-            left: 50%;
-            top: 50%;
-            width: min(92%, 41rem);
-            aspect-ratio: 1.58 / 1;
-            translate: -50% -50%;
-            border: 1px solid rgba(255,255,255,0.045);
-            border-radius: 2rem;
-            box-shadow: 0 0 90px rgba(0,240,255,0.055);
-            pointer-events: none;
-        }
-        .review-reel-fade {
-            position: absolute;
-            z-index: 80;
-            left: 0;
-            width: 100%;
-            height: 24%;
-            pointer-events: none;
-        }
-        .review-reel-fade--top {
-            top: 0;
-            background: linear-gradient(to bottom, #08080a 8%, rgba(8,8,10,0));
-        }
-        .review-reel-fade--bottom {
-            bottom: 0;
-            background: linear-gradient(to top, #08080a 8%, rgba(8,8,10,0));
-        }
-        .review-reel-controls {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            width: calc(100% - 1.5rem);
-            max-width: 39rem;
-            margin: 1.1rem auto 0;
-        }
-        .review-reel-status {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #64748b;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.58rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-        }
-        .review-reel-status strong { color: #f8fafc; }
-        .review-reel-status-dot {
-            width: 0.42rem;
-            height: 0.42rem;
-            border-radius: 999px;
-            background: #ff5e1a;
-            box-shadow: 0 0 12px rgba(255,94,26,0.7);
-        }
-        .review-reel-buttons { display: flex; align-items: center; gap: 0.55rem; }
-        .review-reel-buttons button {
-            display: inline-flex;
-            min-width: 2.75rem;
-            min-height: 2.75rem;
-            align-items: center;
-            justify-content: center;
-            gap: 0.55rem;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 999px;
-            background: rgba(255,255,255,0.045);
-            color: #cbd5e1;
-            transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
-        }
-        .review-reel-buttons button:hover {
-            border-color: rgba(0,240,255,0.5);
-            color: #fff;
-            background: rgba(0,240,255,0.08);
-        }
-        .review-reel-buttons button svg { width: 0.95rem; height: 0.95rem; }
-        .review-reel-buttons .review-reel-pause {
-            padding-inline: 1rem;
-            border-color: rgba(255,94,26,0.35);
-            color: #fff;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.58rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-        .review-reel-live {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        @media (max-width: 639px) {
-            .review-reel-stage { height: 31.5rem; border-radius: 1.4rem; }
-            .review-reel-item {
-                width: calc(100% - 0.5rem);
-                aspect-ratio: 1.05 / 1;
+            .how-work-card::after {
+                inset: auto 0 0 0;
+                height: 48%;
+                background: linear-gradient(180deg, rgba(8, 12, 21, 0), rgba(8, 12, 21, 0.98) 24%, rgba(8, 12, 21, 1));
             }
-            .review-reel-card { padding: 1.15rem; border-radius: 1.35rem; }
-            .review-card-quote-icon { margin-top: 0.7rem; }
-            .review-card-quote { margin-top: 0.45rem; font-size: clamp(0.86rem, 4vw, 1rem); line-height: 1.23; }
-            .review-card-footer { margin-top: 0.6rem; padding-top: 0.65rem; }
-            .review-card-monogram { width: 2rem; height: 2rem; border-radius: 0.62rem; }
-            .review-card-detail { font-size: 0.45rem; }
-            .review-reel-controls { width: calc(100% - 0.5rem); align-items: flex-start; }
-            .review-reel-status { max-width: 8.5rem; line-height: 1.5; }
-            .review-reel-buttons .review-reel-pause { width: 2.75rem; padding: 0; }
-            .review-reel-buttons .review-reel-pause span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
-        }
-
-        :focus-visible {
-            outline: 3px solid #00f0ff;
-            outline-offset: 3px;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto !important; }
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                scroll-behavior: auto !important;
-                transition-duration: 0.01ms !important;
+            .how-work-card-copy {
+                top: auto;
+                right: 6%;
+                bottom: 8%;
+                width: 88%;
+            }
+            .how-work-card-kicker {
+                margin-bottom: 0.55rem;
+                font-size: 0.58rem;
+            }
+            .how-work-card-title {
+                margin-bottom: 0.55rem;
+                font-size: 1.35rem;
+            }
+            .how-work-card-description {
+                font-size: 0.78rem;
+                line-height: 1.35;
             }
         }
-    </style>
-</head>
-<body class="bg-brandDark antialiased text-slate-200">
 
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-
-    <header class="site-header fixed top-0 left-0 w-full z-50 transition-all duration-300">
-        <div class="site-header-inner max-w-7xl mx-auto px-6 flex items-center justify-between gap-6">
-            <!-- Official Scale Opus logo -->
-            <a href="#main-content" aria-label="Scale Opus home" class="flex shrink-0 items-center space-x-3 group">
-                <div class="site-logo-mark overflow-hidden rounded-lg bg-white flex items-center justify-center">
-                    <img src="./assets/images/scale-opus-logo.png" alt="" width="432" height="572" class="h-full w-full object-contain" fetchpriority="high" decoding="async">
-                </div>
-                <div class="flex items-center">
-                    <span class="site-logo-wordmark font-display font-bold text-white group-hover:text-brandOrange transition-colors">SCALE OPUS</span>
-                </div>
-            </a>
-
-            <!-- Navigation Links -->
-            <nav id="primary-navigation" aria-label="Primary navigation" class="site-nav hidden lg:flex items-center gap-7 xl:gap-9">
-                <a href="#about" data-nav-section="about" aria-current="location" class="site-nav-link text-[11px] font-mono font-bold tracking-wider uppercase">About Us</a>
-                <a href="#solutions" data-nav-section="solutions" class="site-nav-link text-[11px] font-mono font-bold tracking-wider uppercase">Solutions</a>
-                <a href="#how-we-work" data-nav-section="how-we-work" class="site-nav-link text-[11px] font-mono font-bold tracking-wider uppercase">How We Work</a>
-                <a href="#growth-engine" data-nav-section="growth-engine" class="site-nav-link text-[11px] font-mono font-bold tracking-wider uppercase">Engine Hub</a>
-                <a href="#pricing" data-nav-section="pricing" class="site-nav-link text-[11px] font-mono font-bold tracking-wider uppercase">Pricing</a>
-                <a href="#reviews" data-nav-section="reviews" class="site-nav-link text-[11px] font-mono font-bold tracking-wider uppercase">Reviews</a>
-            </nav>
 
             <!-- Action Button -->
             <div class="flex items-center space-x-4">
@@ -2097,9 +1431,9 @@
                 
                 <!-- Left Text Column -->
                 <div class="about-copy-column lg:col-span-5 text-left space-y-6">
-                    <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-950 text-white font-mono border border-slate-800">
-                        <span class="w-1.5 h-1.5 rounded-full bg-brandOrange"></span>
-                        <span class="text-[10px] font-bold tracking-widest uppercase">Who We Are</span>
+                    <div class="section-badge inline-flex items-center rounded-full bg-slate-950 text-white font-mono border border-slate-800">
+                        <span class="section-badge-dot rounded-full bg-brandOrange"></span>
+                        <span class="section-badge-label uppercase">Who We Are</span>
                     </div>
                     
                     <h2 class="about-heading text-slate-950 type-headline">
@@ -2233,9 +1567,9 @@
     <section id="solutions" class="py-24 relative solutions-orange-section">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <div class="solutions-eyebrow inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brandCyan/10 border border-brandCyan/20 mb-4 font-mono">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brandCyan"></span>
-                    <span class="text-[10px] font-bold tracking-widest text-brandCyan uppercase">Engineered Offers</span>
+                <div class="section-badge solutions-eyebrow inline-flex items-center rounded-full bg-brandCyan/10 border border-brandCyan/20 mb-4 font-mono">
+                    <span class="section-badge-dot rounded-full bg-brandCyan"></span>
+                    <span class="section-badge-label text-brandCyan uppercase">Engineered Offers</span>
                 </div>
                 <h2 class="section-heading section-heading--md text-white type-headline"><span class="text-brandOrange">Customized Services</span> &amp; AI Frameworks</h2>
                 <div class="flex flex-wrap items-center justify-center gap-2 mt-6 font-mono">
@@ -2373,39 +1707,39 @@
                 </button>
                 <div class="solutions-carousel-track" id="solutions-carousel-track">
                     <article class="solutions-carousel-card solution-carousel-item system" data-category="system">
-                        <img src="./assets/images/solutions/business-process-automation.png" alt="Business Process Automation solution card" width="416" height="407" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/business-process-automation.png')" role="img" aria-label="Business Process Automation solution card"></div>
                         <span class="solutions-carousel-title">Business Process Automation</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item ai" data-category="ai">
-                        <img src="./assets/images/solutions/ai-chatbots-knowledge-agents.png" alt="AI Chatbots and Knowledge Agents solution card" width="406" height="407" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/ai-chatbots-knowledge-agents.png')" role="img" aria-label="AI Chatbots and Knowledge Agents solution card"></div>
                         <span class="solutions-carousel-title">AI Chatbots &amp; Knowledge Agents</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item ai" data-category="ai">
-                        <img src="./assets/images/solutions/ai-voice-assistants.png" alt="AI Voice Assistants solution card" width="410" height="407" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/ai-voice-assistants.png')" role="img" aria-label="AI Voice Assistants solution card"></div>
                         <span class="solutions-carousel-title">AI Voice Assistants</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item brand" data-category="brand">
-                        <img src="./assets/images/solutions/custom-web-app-engineering.png" alt="Custom Web and App Engineering solution card" width="416" height="371" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/custom-web-app-engineering.png')" role="img" aria-label="Custom Web and App Engineering solution card"></div>
                         <span class="solutions-carousel-title">Custom Web &amp; App Engineering</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item brand" data-category="brand">
-                        <img src="./assets/images/solutions/brand-identity-design-systems.png" alt="Brand Identity and Design Systems solution card" width="406" height="371" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/brand-identity-design-systems.png')" role="img" aria-label="Brand Identity and Design Systems solution card"></div>
                         <span class="solutions-carousel-title">Brand Identity &amp; Design Systems</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item system" data-category="system">
-                        <img src="./assets/images/solutions/crm-analytics.png" alt="CRM and Analytics solution card" width="410" height="371" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/crm-analytics.png')" role="img" aria-label="CRM and Analytics solution card"></div>
                         <span class="solutions-carousel-title">CRM &amp; Analytics</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item ai" data-category="ai">
-                        <img src="./assets/images/solutions/autonomous-multi-agent-workflows.png" alt="Autonomous Multi-Agent Workflows solution card" width="416" height="353" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/autonomous-multi-agent-workflows.png')" role="img" aria-label="Autonomous Multi-Agent Workflows solution card"></div>
                         <span class="solutions-carousel-title">Autonomous Multi-Agent Workflows</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item system" data-category="system">
-                        <img src="./assets/images/solutions/enterprise-cloud-api-integrations.png" alt="Enterprise Cloud and API Integrations solution card" width="406" height="353" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/enterprise-cloud-api-integrations.png')" role="img" aria-label="Enterprise Cloud and API Integrations solution card"></div>
                         <span class="solutions-carousel-title">Enterprise Cloud &amp; API Integrations</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item brand" data-category="brand">
-                        <img src="./assets/images/solutions/conversion-engine-optimization.png" alt="Conversion Engine Optimization solution card" width="410" height="353" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/conversion-engine-optimization.png')" role="img" aria-label="Conversion Engine Optimization solution card"></div>
                         <span class="solutions-carousel-title">Conversion Engine Optimization</span>
                     </article>
                 </div>
@@ -2420,9 +1754,9 @@
     <section id="how-we-work" class="py-24 bg-[#fbfbfa] text-slate-950 border-t border-slate-300 relative z-10 font-sans">
         <div class="max-w-7xl mx-auto px-6">
             <!-- Section Label -->
-            <div class="flex w-fit items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-950 text-white font-mono border border-slate-800 mb-12">
-                <span class="w-1.5 h-1.5 rounded-full bg-brandOrange"></span>
-                <span class="text-[10px] font-bold tracking-widest uppercase">How We Work</span>
+            <div class="section-badge flex w-fit items-center rounded-full bg-slate-950 text-white font-mono border border-slate-800 mb-12">
+                <span class="section-badge-dot rounded-full bg-brandOrange"></span>
+                <span class="section-badge-label uppercase">How We Work</span>
             </div>
 
             <!-- Headline & Summary Block -->
@@ -2445,22 +1779,42 @@
                 
                 <!-- Card 01: Diagnose -->
                 <article class="how-work-card sticky top-28 md:top-36 z-10">
-                    <img class="how-work-card-image" src="./assets/images/how-we-work/diagnose.png" width="1461" height="575" loading="lazy" decoding="async" alt="Diagnose phase: finance and audit card with performance analytics, funnel audit, friction mapping, and ROI targeting">
+                    <div class="how-work-card-image" style="background-image:url('./assets/images/how-we-work/diagnose.png')" role="img" aria-label="Diagnose phase: finance and audit card with performance analytics, funnel audit, friction mapping, and ROI targeting"></div>
+                    <div class="how-work-card-copy" aria-hidden="true">
+                        <div class="how-work-card-kicker"><span>Diagnose</span><span>01 / 04</span></div>
+                        <h3 class="how-work-card-title">Diagnose</h3>
+                        <p class="how-work-card-description">We find the friction, missed opportunities, and highest-leverage growth constraints across your current sales funnel and operational setup.</p>
+                    </div>
                 </article>
 
                 <!-- Card 02: Design -->
                 <article class="how-work-card sticky top-32 md:top-40 z-20">
-                    <img class="how-work-card-image" src="./assets/images/how-we-work/design.png" width="1461" height="563" loading="lazy" decoding="async" alt="Design phase: architecture card showing interface planning, AI blueprints, custom UI systems, and workflow mapping">
+                    <div class="how-work-card-image" style="background-image:url('./assets/images/how-we-work/design.png')" role="img" aria-label="Design phase: architecture card showing interface planning, AI blueprints, custom UI systems, and workflow mapping"></div>
+                    <div class="how-work-card-copy" aria-hidden="true">
+                        <div class="how-work-card-kicker"><span>Design</span><span>02 / 04</span></div>
+                        <h3 class="how-work-card-title">Design</h3>
+                        <p class="how-work-card-description">We architect the right mix of brand identity, high-conversion web user experience, automation pipelines, and AI engines around your business reality.</p>
+                    </div>
                 </article>
 
                 <!-- Card 03: Deploy -->
                 <article class="how-work-card sticky top-36 md:top-44 z-30">
-                    <img class="how-work-card-image how-work-card-image--deploy" src="./assets/images/how-we-work/deploy.png" width="1536" height="1024" loading="lazy" decoding="async" alt="Deploy phase: engineering card showing connected cloud infrastructure, CRM connection, chatbot training, and quality assurance testing">
+                    <div class="how-work-card-image how-work-card-image--deploy" style="background-image:url('./assets/images/how-we-work/deploy.png')" role="img" aria-label="Deploy phase: engineering card showing connected cloud infrastructure, CRM connection, chatbot training, and quality assurance testing"></div>
+                    <div class="how-work-card-copy" aria-hidden="true">
+                        <div class="how-work-card-kicker"><span>Deploy</span><span>03 / 04</span></div>
+                        <h3 class="how-work-card-title">Deploy</h3>
+                        <p class="how-work-card-description">We build, connect, and rigorously test the software ecosystem so it operates flawlessly and drives qualified client leads from day one.</p>
+                    </div>
                 </article>
 
                 <!-- Card 04: Scale -->
                 <article class="how-work-card sticky top-40 md:top-48 z-40">
-                    <img class="how-work-card-image" src="./assets/images/how-we-work/scale.png" width="1453" height="570" loading="lazy" decoding="async" alt="Scale phase: growth and scale card showing enterprise expansion, real-time analytics, continuous AI refinement, and market scaling">
+                    <div class="how-work-card-image" style="background-image:url('./assets/images/how-we-work/scale.png')" role="img" aria-label="Scale phase: growth and scale card showing enterprise expansion, real-time analytics, continuous AI refinement, and market scaling"></div>
+                    <div class="how-work-card-copy" aria-hidden="true">
+                        <div class="how-work-card-kicker"><span>Scale</span><span>04 / 04</span></div>
+                        <h3 class="how-work-card-title">Scale</h3>
+                        <p class="how-work-card-description">We track essential conversion metrics, refine response algorithms, and expand the autonomous growth system to keep your company ahead of trends.</p>
+                    </div>
                 </article>
 
             </div>
@@ -2471,9 +1825,9 @@
         <div data-ghost-cursor data-ghost-color="#a855f7" class="absolute inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true"></div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brandPurple/10 border border-brandPurple/20 mb-4 font-mono">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brandPurple"></span>
-                    <span class="text-[10px] font-bold tracking-widest text-brandPurple uppercase">Sandbox Mode</span>
+                <div class="section-badge inline-flex items-center rounded-full bg-brandPurple/10 border border-brandPurple/20 mb-4 font-mono">
+                    <span class="section-badge-dot rounded-full bg-brandPurple"></span>
+                    <span class="section-badge-label text-brandPurple uppercase">Sandbox Mode</span>
                 </div>
                 <h2 class="section-heading section-heading--md text-white"><span class="text-brandOrange">Live AI Agent</span> Playground</h2>
                 <p class="text-xs md:text-sm text-slate-400 mt-2 font-mono">Interact below with real-time simulations of our specialized business algorithms.</p>
@@ -2613,9 +1967,9 @@
     <section id="pricing" class="pricing-wallet-section relative overflow-hidden border-t border-slate-200 py-24 md:py-32">
         <div class="relative z-10 mx-auto max-w-7xl px-6">
             <div class="mx-auto mb-16 max-w-3xl text-center md:mb-20">
-                <div class="pricing-eyebrow-shift relative -top-10 -mb-8 inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-950 px-4 py-2 font-mono shadow-lg">
-                    <span class="h-1.5 w-1.5 rounded-full bg-brandOrange"></span>
-                    <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-white">Flexible Pricing Plans</span>
+                <div class="section-badge pricing-eyebrow-shift relative -top-10 -mb-8 inline-flex items-center rounded-full border border-slate-800 bg-slate-950 font-mono shadow-lg">
+                    <span class="section-badge-dot rounded-full bg-brandOrange"></span>
+                    <span class="section-badge-label uppercase text-white">Flexible Pricing Plans</span>
                 </div>
                 <h2 class="section-heading section-heading--lg text-slate-950">Choose the Plan That Scales With You</h2>
                 <p class="mt-4 font-mono text-xs leading-relaxed text-slate-600 md:text-sm">Transparent pricing. Powerful infrastructure. Endless possibilities.</p>
@@ -2708,9 +2062,9 @@
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 items-center">
                 <div class="lg:col-span-5 text-left">
-                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brandOrange/10 border border-brandOrange/20 mb-6 font-mono">
-                        <span class="w-1.5 h-1.5 rounded-full bg-brandOrange"></span>
-                        <span class="text-[10px] font-bold tracking-widest text-brandOrange uppercase">Customer Reviews</span>
+                    <div class="section-badge inline-flex items-center rounded-full bg-brandOrange/10 border border-brandOrange/20 mb-6 font-mono">
+                        <span class="section-badge-dot rounded-full bg-brandOrange"></span>
+                        <span class="section-badge-label text-brandOrange uppercase">Customer Reviews</span>
                     </div>
                     <h2 class="section-heading section-heading--lg text-white">What <span class="text-brandOrange">Measurable Growth</span> <span class="whitespace-nowrap">Looks Like</span></h2>
                     <p class="text-sm md:text-base text-slate-400 mt-6 leading-relaxed max-w-lg">Hear how customers describe the clarity, collaboration, and confidence behind their Scale Opus experience.</p>
@@ -2810,14 +2164,15 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-5 text-left space-y-6">
-                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brandOrange/10 border border-brandOrange/20 font-mono">
-                        <span class="w-1.5 h-1.5 rounded-full bg-brandOrange"></span>
-                        <span class="text-[10px] font-bold tracking-widest text-brandOrange uppercase">Let's Build</span>
+                    <div class="section-badge inline-flex items-center rounded-full bg-brandOrange/10 border border-brandOrange/20 font-mono">
+                        <span class="section-badge-dot rounded-full bg-brandOrange"></span>
+                        <span class="section-badge-label text-brandOrange uppercase">Let's Build</span>
                     </div>
                     
                     <h2 class="section-heading section-heading--md text-white connect-heading">
                         Power Up Your <span class="text-brandOrange">Growth Engine.</span>
                     </h2>
+
                     
                     <p class="text-slate-300 leading-relaxed text-xs md:text-sm font-sans">
                         Submit your enterprise parameters below. Our integration architects will run a comprehensive system assessment to design a customized CRM, branding, and conversational AI prototype tailored explicitly for your company's scale.
@@ -2826,6 +2181,7 @@
                     <div class="space-y-4 pt-4 font-mono">
                         <div class="flex items-center space-x-4">
                             <div class="w-10 h-10 rounded-xl bg-white border border-slate-300 shadow-[0_10px_24px_rgba(15,23,42,0.12)] flex items-center justify-center text-brandCyan text-sm">
+
                                 <i class="fa-solid fa-envelope"></i>
                             </div>
                             <div>
@@ -2835,6 +2191,7 @@
                         </div>
                         <div class="flex items-center space-x-4">
                             <div class="w-10 h-10 rounded-xl bg-white border border-slate-300 shadow-[0_10px_24px_rgba(15,23,42,0.12)] flex items-center justify-center text-brandOrange text-sm">
+
                                 <i class="fa-solid fa-globe"></i>
                             </div>
                             <div>
@@ -2856,13 +2213,17 @@
                             <a href="https://www.linkedin.com/company/scale-opus" target="_blank" class="w-8 h-8 rounded-lg bg-white border border-slate-300 shadow-[0_10px_24px_rgba(15,23,42,0.12)] flex items-center justify-center text-slate-950 hover:text-white hover:bg-blue-700 transition-all text-xs">
                                 <i class="fa-brands fa-linkedin-in"></i>
                             </a>
+
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <div class="lg:col-span-7 lead-intake-panel rounded-3xl p-6 md:p-8 hover-scale relative overflow-hidden">
-                    <div class="relative z-10 flex items-center justify-between mb-6 font-mono">
+                    <div class="relative z-10 flex flex-wrap items-center justify-between gap-3 mb-6">
                         <h3 class="lead-intake-title">Get In Touch</h3>
+
                         <div id="form-score-badge" class="bg-brandOrange/10 text-brandOrange border border-brandOrange/30 text-[9px] font-black tracking-wider uppercase px-2.5 py-0.5 rounded-full animate-pulse">
                             Lead Score: 0% Ready
                         </div>
@@ -2891,6 +2252,7 @@
                                     <option value="service">Professional Services</option>
                                     <option value="logistics">Logistics &amp; Transport</option>
                                     <option value="other">Other</option>
+
                                 </select>
                             </div>
                             <div>
@@ -2902,6 +2264,7 @@
                                     <option value="crm">Workflow Automation &amp; CRM</option>
                                     <option value="complete">All-Inclusive Scale Package</option>
                                     <option value="other-enquiry">Other Enquiry</option>
+
                                 </select>
                             </div>
                         </div>
@@ -2915,6 +2278,7 @@
                             <button type="submit" class="w-full py-3.5 rounded-xl text-xs font-bold tracking-widest uppercase bg-brandOrange text-white hover:brightness-110 transition-all shadow-lg shadow-brandOrange/25">
                                 Send Message <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
                             </button>
+
                         </div>
 
                         <div id="form-status-alert" class="hidden p-3 rounded-xl bg-brandCyan/10 border border-brandCyan/30 text-xs text-brandCyan text-center font-bold">
@@ -2996,6 +2360,7 @@
 
     <footer class="hidden">
         <div class="max-w-7xl mx-auto px-6 py-10 md:py-12">
+
             <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 overflow-hidden rounded bg-white flex items-center justify-center">
                     <img src="./assets/images/scale-opus-logo.png" alt="" width="432" height="572" class="h-full w-full object-contain" loading="lazy">
@@ -3028,6 +2393,7 @@
 
     <script src="./assets/chatbot-knowledge.js" defer></script>
     <script>
+
         function initTypewriterAnimations() {
             const headlines = document.querySelectorAll('.type-headline');
             
@@ -3774,6 +3140,7 @@
                 alertBox.classList.remove('hidden');
 
                 document.getElementById('crm-lead-form').reset();
+
                 updateFormProgress();
 
                 setTimeout(() => {
@@ -3840,6 +3207,7 @@
 
         window.addEventListener('DOMContentLoaded', function() {
             const mobileBtn = document.getElementById('mobile-menu-toggle');
+
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileBtn && mobileMenu) {
                 mobileBtn.addEventListener('click', () => {
@@ -3861,6 +3229,7 @@
             window.addEventListener('scroll', handleGlobalScrolls, { passive: true });
             handleGlobalScrolls();
         });
+
     </script>
 </body>
 </html>
