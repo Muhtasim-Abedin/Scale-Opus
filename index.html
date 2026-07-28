@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Primary Title & Description -->
     <title>Scale Opus | Enterprise CRM, Branding & AI Prototypes</title>
     <meta name="description" content="Power up your growth engine with Scale Opus. Comprehensive system assessments, custom CRM, branding, and conversational AI solutions built to scale your business.">
@@ -15,13 +14,18 @@
     <meta property="og:title" content="Scale Opus | Growth Engine & Systems">
     <meta property="og:description" content="Scale Opus helps design customized CRM, branding, and conversational AI prototypes tailored for enterprise scale.">
     <meta property="og:url" content="https://www.scaleopus.com/">
-
-    <link rel="icon" type="image/png" href="./assets/images/scale-opus-logo.png">
+    <!-- Favicon for Google Search & Browsers -->
+    <link rel="icon" type="image/png" sizes="48x48" href="./assets/images/scale-opus-favicon-48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/images/scale-opus-favicon-192.png">
+    <link rel="apple-touch-icon" href="./assets/images/scale-opus-favicon-192.png">
+    <link rel="preload" as="image" href="./assets/images/scale-opus-logo.png" fetchpriority="high">
+    <link rel="preload" as="font" type="font/ttf" href="./assets/fonts/space-grotesk-700.ttf">
+    <link rel="preload" as="font" type="font/ttf" href="./assets/fonts/inter-700.ttf">
     <link rel="stylesheet" href="./assets/site.css">
     <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
-    <script src="./assets/gsap.min.js" defer></script>
-    <script src="./assets/ghost-cursor-loader.js" defer></script>
-    <script src="./assets/reviews-card-stack-loader.js" defer></script>
+    <script src="./assets/gsap.min.js" defer fetchpriority="low"></script>
+    <script src="./assets/ghost-cursor-loader.js" defer fetchpriority="low"></script>
+    <script src="./assets/reviews-card-stack-loader.js" defer fetchpriority="low"></script>
     
     <style>
         @font-face {
@@ -61,6 +65,18 @@
             color: #f1f5f9;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+        }
+
+        #about,
+        #solutions,
+        #how-we-work,
+        #growth-engine,
+        #pricing,
+        #reviews,
+        #connect,
+        .scale-footer {
+            content-visibility: auto;
+            contain-intrinsic-size: 900px;
         }
 
         .dashboard-container {
@@ -355,12 +371,13 @@
             will-change: transform, opacity, filter;
         }
 
-        .solutions-carousel-card img {
+        .solutions-carousel-card-image {
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center top;
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .solutions-carousel-card::after {
@@ -562,10 +579,20 @@
             color: #ffffff;
         }
 
-        .lead-intake-panel label,
-        .lead-intake-title {
+        .lead-intake-panel label {
             color: #ffffff !important;
             text-shadow: 0 1px 14px rgba(0, 0, 0, 0.22);
+        }
+
+        .lead-intake-title {
+            color: #ff5e1a !important;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.25rem, 2vw, 1.65rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.025em;
+            text-transform: none;
+            text-shadow: 0 0 12px rgba(255, 94, 26, 0.42), 0 8px 26px rgba(255, 94, 26, 0.24);
         }
 
         .lead-intake-field::placeholder {
@@ -703,7 +730,11 @@
             display: inline-flex;
             align-items: center;
             min-height: 4.75rem;
-            color: #cbd5e1;
+            color: #ffffff !important;
+            font-size: 13px !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.08em !important;
+            text-shadow: 0 1px 12px rgba(255, 255, 255, 0.08);
             transition: color 180ms ease;
         }
         .site-nav-link::after {
@@ -750,6 +781,7 @@
         }
         .how-work-card {
             display: block;
+            position: sticky;
             overflow: hidden;
             aspect-ratio: 1461 / 563;
             border-radius: clamp(1.35rem, 2vw, 1.75rem);
@@ -762,20 +794,109 @@
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
             transform: scale(1.035);
             transform-origin: center;
             backface-visibility: hidden;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
         }
         .how-work-card-image--deploy {
-            object-position: center 43%;
+            background-position: center 43%;
             transform: scale(1.1);
+        }
+        #solutions img,
+        #how-we-work img {
+            pointer-events: none !important;
+            user-select: none !important;
+            -webkit-user-drag: none !important;
+        }
+        .how-work-card::after {
+            content: "";
+            position: absolute;
+            inset: 0 0 0 54%;
+            z-index: 1;
+            background:
+                radial-gradient(circle at 92% 8%, rgba(124, 58, 237, 0.24), transparent 34%),
+                linear-gradient(90deg, rgba(8, 12, 21, 0.96), rgba(10, 14, 24, 0.99));
+            pointer-events: none;
+        }
+        .how-work-card-copy {
+            position: absolute;
+            top: 22%;
+            right: 6.2%;
+            z-index: 2;
+            width: 34%;
+            color: #f8fafc;
+        }
+        .how-work-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-bottom: 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #c4b5fd;
+        }
+        .how-work-card-kicker span:first-child {
+            padding: 0.3rem 0.65rem;
+            border-radius: 999px;
+            border: 1px solid rgba(196, 181, 253, 0.38);
+            background: rgba(124, 58, 237, 0.13);
+        }
+        .how-work-card-title {
+            margin: 0 0 1.45rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.35rem;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: 0;
+            color: #ffffff;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.42);
+        }
+        .how-work-card-description {
+            margin: 0;
+            max-width: 27rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.55;
+            color: #e2e8f0;
+            text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
         }
         @media (max-width: 767px) {
             .how-work-card {
                 border-radius: 0.85rem;
                 box-shadow: 0 18px 45px rgba(2, 6, 23, 0.16);
+            }
+            .how-work-card::after {
+                inset: auto 0 0 0;
+                height: 48%;
+                background: linear-gradient(180deg, rgba(8, 12, 21, 0), rgba(8, 12, 21, 0.98) 24%, rgba(8, 12, 21, 1));
+            }
+            .how-work-card-copy {
+                top: auto;
+                right: 6%;
+                bottom: 8%;
+                width: 88%;
+            }
+            .how-work-card-kicker {
+                margin-bottom: 0.55rem;
+                font-size: 0.58rem;
+            }
+            .how-work-card-title {
+                margin-bottom: 0.55rem;
+                font-size: 1.35rem;
+            }
+            .how-work-card-description {
+                font-size: 0.78rem;
+                line-height: 1.35;
             }
         }
         .section-heading {
@@ -787,6 +908,11 @@
         .section-heading--xl { font-size: clamp(3.5rem, 6.2vw, 6rem); }
         .section-heading--lg { font-size: clamp(3rem, 5vw, 4.5rem); }
         .section-heading--md { font-size: clamp(2.65rem, 4vw, 3.75rem); }
+        .connect-heading { line-height: 1.08; }
+        .connect-heading .text-brandOrange {
+            display: inline-block;
+            margin-top: 0.08em;
+        }
         .back-to-top-button {
             width: 3.25rem;
             height: 3.75rem;
@@ -809,6 +935,28 @@
         }
         .pricing-eyebrow-shift {
             transform: translateY(-1cm);
+        }
+        .section-badge {
+            min-height: 30px !important;
+            padding: 6px 12px !important;
+            gap: 8px !important;
+            border-width: 1px !important;
+            border-style: solid !important;
+            border-radius: 9999px !important;
+            align-items: center !important;
+            line-height: 1 !important;
+        }
+        .section-badge-dot {
+            width: 6px !important;
+            height: 6px !important;
+            flex: 0 0 6px !important;
+        }
+        .section-badge-label {
+            font-size: 10px !important;
+            font-weight: 700 !important;
+            line-height: 1 !important;
+            letter-spacing: 0.1em !important;
+            white-space: nowrap !important;
         }
         .pricing-wallet-section::before {
             display: none;
@@ -1125,12 +1273,13 @@
             height: 2.6rem;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255,255,255,0.18);
+            border: 1.5px solid rgba(15, 23, 42, 0.22);
             border-radius: 0.45rem;
             color: #ffffff;
-            transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+            transition: color 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
         }
-        .scale-footer-socials a:hover { border-color: #ff5e1a; color: #ff5e1a; background: rgba(255,94,26,0.08); }
+        .scale-footer-socials a:hover { border-color: #ff5e1a; color: #ff5e1a; background: rgba(255,94,26,0.08); box-shadow: 0 12px 28px rgba(255, 94, 26, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.55); }
         .scale-footer-title {
             color: #ffffff;
             font-size: 0.95rem;
@@ -1195,7 +1344,9 @@
         #connect input,
         #connect select,
         #connect textarea {
-            color: #030718 !important;
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+            caret-color: #ffffff;
         }
         #connect input::placeholder,
         #connect textarea::placeholder {
@@ -1539,7 +1690,7 @@
             <!-- Official Scale Opus logo -->
             <a href="#main-content" aria-label="Scale Opus home" class="flex shrink-0 items-center space-x-3 group">
                 <div class="site-logo-mark overflow-hidden rounded-lg bg-white flex items-center justify-center">
-                    <img src="./assets/images/scale-opus-logo.png" alt="" width="432" height="572" class="h-full w-full object-contain" fetchpriority="high">
+                    <img src="./assets/images/scale-opus-logo.png" alt="" width="432" height="572" class="h-full w-full object-contain" fetchpriority="high" decoding="async">
                 </div>
                 <div class="flex items-center">
                     <span class="site-logo-wordmark font-display font-bold text-white group-hover:text-brandOrange transition-colors">SCALE OPUS</span>
@@ -2063,9 +2214,9 @@
                 
                 <!-- Left Text Column -->
                 <div class="about-copy-column lg:col-span-5 text-left space-y-6">
-                    <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-950 text-white font-mono border border-slate-800">
-                        <span class="w-1.5 h-1.5 rounded-full bg-brandOrange"></span>
-                        <span class="text-[10px] font-bold tracking-widest uppercase">Who We Are</span>
+                    <div class="section-badge inline-flex items-center rounded-full bg-slate-950 text-white font-mono border border-slate-800">
+                        <span class="section-badge-dot rounded-full bg-brandOrange"></span>
+                        <span class="section-badge-label uppercase">Who We Are</span>
                     </div>
                     
                     <h2 class="about-heading text-slate-950 type-headline">
@@ -2199,9 +2350,9 @@
     <section id="solutions" class="py-24 relative solutions-orange-section">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <div class="solutions-eyebrow inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brandCyan/10 border border-brandCyan/20 mb-4 font-mono">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brandCyan"></span>
-                    <span class="text-[10px] font-bold tracking-widest text-brandCyan uppercase">Engineered Offers</span>
+                <div class="section-badge solutions-eyebrow inline-flex items-center rounded-full bg-brandCyan/10 border border-brandCyan/20 mb-4 font-mono">
+                    <span class="section-badge-dot rounded-full bg-brandCyan"></span>
+                    <span class="section-badge-label text-brandCyan uppercase">Engineered Offers</span>
                 </div>
                 <h2 class="section-heading section-heading--md text-white type-headline"><span class="text-brandOrange">Customized Services</span> &amp; AI Frameworks</h2>
                 <div class="flex flex-wrap items-center justify-center gap-2 mt-6 font-mono">
@@ -2339,39 +2490,39 @@
                 </button>
                 <div class="solutions-carousel-track" id="solutions-carousel-track">
                     <article class="solutions-carousel-card solution-carousel-item system" data-category="system">
-                        <img src="./assets/images/solutions/business-process-automation.png" alt="Business Process Automation solution card" width="416" height="407" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/business-process-automation.png')" role="img" aria-label="Business Process Automation solution card"></div>
                         <span class="solutions-carousel-title">Business Process Automation</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item ai" data-category="ai">
-                        <img src="./assets/images/solutions/ai-chatbots-knowledge-agents.png" alt="AI Chatbots and Knowledge Agents solution card" width="406" height="407" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/ai-chatbots-knowledge-agents.png')" role="img" aria-label="AI Chatbots and Knowledge Agents solution card"></div>
                         <span class="solutions-carousel-title">AI Chatbots &amp; Knowledge Agents</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item ai" data-category="ai">
-                        <img src="./assets/images/solutions/ai-voice-assistants.png" alt="AI Voice Assistants solution card" width="410" height="407" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/ai-voice-assistants.png')" role="img" aria-label="AI Voice Assistants solution card"></div>
                         <span class="solutions-carousel-title">AI Voice Assistants</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item brand" data-category="brand">
-                        <img src="./assets/images/solutions/custom-web-app-engineering.png" alt="Custom Web and App Engineering solution card" width="416" height="371" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/custom-web-app-engineering.png')" role="img" aria-label="Custom Web and App Engineering solution card"></div>
                         <span class="solutions-carousel-title">Custom Web &amp; App Engineering</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item brand" data-category="brand">
-                        <img src="./assets/images/solutions/brand-identity-design-systems.png" alt="Brand Identity and Design Systems solution card" width="406" height="371" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/brand-identity-design-systems.png')" role="img" aria-label="Brand Identity and Design Systems solution card"></div>
                         <span class="solutions-carousel-title">Brand Identity &amp; Design Systems</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item system" data-category="system">
-                        <img src="./assets/images/solutions/crm-analytics.png" alt="CRM and Analytics solution card" width="410" height="371" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/crm-analytics.png')" role="img" aria-label="CRM and Analytics solution card"></div>
                         <span class="solutions-carousel-title">CRM &amp; Analytics</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item ai" data-category="ai">
-                        <img src="./assets/images/solutions/autonomous-multi-agent-workflows.png" alt="Autonomous Multi-Agent Workflows solution card" width="416" height="353" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/autonomous-multi-agent-workflows.png')" role="img" aria-label="Autonomous Multi-Agent Workflows solution card"></div>
                         <span class="solutions-carousel-title">Autonomous Multi-Agent Workflows</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item system" data-category="system">
-                        <img src="./assets/images/solutions/enterprise-cloud-api-integrations.png" alt="Enterprise Cloud and API Integrations solution card" width="406" height="353" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/enterprise-cloud-api-integrations.png')" role="img" aria-label="Enterprise Cloud and API Integrations solution card"></div>
                         <span class="solutions-carousel-title">Enterprise Cloud &amp; API Integrations</span>
                     </article>
                     <article class="solutions-carousel-card solution-carousel-item brand" data-category="brand">
-                        <img src="./assets/images/solutions/conversion-engine-optimization.png" alt="Conversion Engine Optimization solution card" width="410" height="353" loading="lazy" decoding="async">
+                        <div class="solutions-carousel-card-image" style="background-image:url('./assets/images/solutions/conversion-engine-optimization.png')" role="img" aria-label="Conversion Engine Optimization solution card"></div>
                         <span class="solutions-carousel-title">Conversion Engine Optimization</span>
                     </article>
                 </div>
@@ -2386,9 +2537,9 @@
     <section id="how-we-work" class="py-24 bg-[#fbfbfa] text-slate-950 border-t border-slate-300 relative z-10 font-sans">
         <div class="max-w-7xl mx-auto px-6">
             <!-- Section Label -->
-            <div class="flex w-fit items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-950 text-white font-mono border border-slate-800 mb-12">
-                <span class="w-1.5 h-1.5 rounded-full bg-brandOrange"></span>
-                <span class="text-[10px] font-bold tracking-widest uppercase">How We Work</span>
+            <div class="section-badge flex w-fit items-center rounded-full bg-slate-950 text-white font-mono border border-slate-800 mb-12">
+                <span class="section-badge-dot rounded-full bg-brandOrange"></span>
+                <span class="section-badge-label uppercase">How We Work</span>
             </div>
 
             <!-- Headline & Summary Block -->
@@ -2411,22 +2562,42 @@
                 
                 <!-- Card 01: Diagnose -->
                 <article class="how-work-card sticky top-28 md:top-36 z-10">
-                    <img class="how-work-card-image" src="./assets/images/how-we-work/diagnose.png" width="1461" height="575" loading="lazy" decoding="async" alt="Diagnose phase: finance and audit card with performance analytics, funnel audit, friction mapping, and ROI targeting">
+                    <div class="how-work-card-image" style="background-image:url('./assets/images/how-we-work/diagnose.png')" role="img" aria-label="Diagnose phase: finance and audit card with performance analytics, funnel audit, friction mapping, and ROI targeting"></div>
+                    <div class="how-work-card-copy" aria-hidden="true">
+                        <div class="how-work-card-kicker"><span>Diagnose</span><span>01 / 04</span></div>
+                        <h3 class="how-work-card-title">Diagnose</h3>
+                        <p class="how-work-card-description">We find the friction, missed opportunities, and highest-leverage growth constraints across your current sales funnel and operational setup.</p>
+                    </div>
                 </article>
 
                 <!-- Card 02: Design -->
                 <article class="how-work-card sticky top-32 md:top-40 z-20">
-                    <img class="how-work-card-image" src="./assets/images/how-we-work/design.png" width="1461" height="563" loading="lazy" decoding="async" alt="Design phase: architecture card showing interface planning, AI blueprints, custom UI systems, and workflow mapping">
+                    <div class="how-work-card-image" style="background-image:url('./assets/images/how-we-work/design.png')" role="img" aria-label="Design phase: architecture card showing interface planning, AI blueprints, custom UI systems, and workflow mapping"></div>
+                    <div class="how-work-card-copy" aria-hidden="true">
+                        <div class="how-work-card-kicker"><span>Design</span><span>02 / 04</span></div>
+                        <h3 class="how-work-card-title">Design</h3>
+                        <p class="how-work-card-description">We architect the right mix of brand identity, high-conversion web user experience, automation pipelines, and AI engines around your business reality.</p>
+                    </div>
                 </article>
 
                 <!-- Card 03: Deploy -->
                 <article class="how-work-card sticky top-36 md:top-44 z-30">
-                    <img class="how-work-card-image how-work-card-image--deploy" src="./assets/images/how-we-work/deploy.png" width="1536" height="1024" loading="lazy" decoding="async" alt="Deploy phase: engineering card showing connected cloud infrastructure, CRM connection, chatbot training, and quality assurance testing">
+                    <div class="how-work-card-image how-work-card-image--deploy" style="background-image:url('./assets/images/how-we-work/deploy.png')" role="img" aria-label="Deploy phase: engineering card showing connected cloud infrastructure, CRM connection, chatbot training, and quality assurance testing"></div>
+                    <div class="how-work-card-copy" aria-hidden="true">
+                        <div class="how-work-card-kicker"><span>Deploy</span><span>03 / 04</span></div>
+                        <h3 class="how-work-card-title">Deploy</h3>
+                        <p class="how-work-card-description">We build, connect, and rigorously test the software ecosystem so it operates flawlessly and drives qualified client leads from day one.</p>
+                    </div>
                 </article>
 
                 <!-- Card 04: Scale -->
                 <article class="how-work-card sticky top-40 md:top-48 z-40">
-                    <img class="how-work-card-image" src="./assets/images/how-we-work/scale.png" width="1453" height="570" loading="lazy" decoding="async" alt="Scale phase: growth and scale card showing enterprise expansion, real-time analytics, continuous AI refinement, and market scaling">
+                    <div class="how-work-card-image" style="background-image:url('./assets/images/how-we-work/scale.png')" role="img" aria-label="Scale phase: growth and scale card showing enterprise expansion, real-time analytics, continuous AI refinement, and market scaling"></div>
+                    <div class="how-work-card-copy" aria-hidden="true">
+                        <div class="how-work-card-kicker"><span>Scale</span><span>04 / 04</span></div>
+                        <h3 class="how-work-card-title">Scale</h3>
+                        <p class="how-work-card-description">We track essential conversion metrics, refine response algorithms, and expand the autonomous growth system to keep your company ahead of trends.</p>
+                    </div>
                 </article>
 
             </div>
@@ -2437,9 +2608,9 @@
         <div data-ghost-cursor data-ghost-color="#a855f7" class="absolute inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true"></div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brandPurple/10 border border-brandPurple/20 mb-4 font-mono">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brandPurple"></span>
-                    <span class="text-[10px] font-bold tracking-widest text-brandPurple uppercase">Sandbox Mode</span>
+                <div class="section-badge inline-flex items-center rounded-full bg-brandPurple/10 border border-brandPurple/20 mb-4 font-mono">
+                    <span class="section-badge-dot rounded-full bg-brandPurple"></span>
+                    <span class="section-badge-label text-brandPurple uppercase">Sandbox Mode</span>
                 </div>
                 <h2 class="section-heading section-heading--md text-white"><span class="text-brandOrange">Live AI Agent</span> Playground</h2>
                 <p class="text-xs md:text-sm text-slate-400 mt-2 font-mono">Interact below with real-time simulations of our specialized business algorithms.</p>
@@ -2579,9 +2750,9 @@
     <section id="pricing" class="pricing-wallet-section relative overflow-hidden border-t border-slate-200 py-24 md:py-32">
         <div class="relative z-10 mx-auto max-w-7xl px-6">
             <div class="mx-auto mb-16 max-w-3xl text-center md:mb-20">
-                <div class="pricing-eyebrow-shift relative -top-10 -mb-8 inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-950 px-4 py-2 font-mono shadow-lg">
-                    <span class="h-1.5 w-1.5 rounded-full bg-brandOrange"></span>
-                    <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-white">Flexible Pricing Plans</span>
+                <div class="section-badge pricing-eyebrow-shift relative -top-10 -mb-8 inline-flex items-center rounded-full border border-slate-800 bg-slate-950 font-mono shadow-lg">
+                    <span class="section-badge-dot rounded-full bg-brandOrange"></span>
+                    <span class="section-badge-label uppercase text-white">Flexible Pricing Plans</span>
                 </div>
                 <h2 class="section-heading section-heading--lg text-slate-950">Choose the Plan That Scales With You</h2>
                 <p class="mt-4 font-mono text-xs leading-relaxed text-slate-600 md:text-sm">Transparent pricing. Powerful infrastructure. Endless possibilities.</p>
@@ -2674,9 +2845,9 @@
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 items-center">
                 <div class="lg:col-span-5 text-left">
-                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brandOrange/10 border border-brandOrange/20 mb-6 font-mono">
-                        <span class="w-1.5 h-1.5 rounded-full bg-brandOrange"></span>
-                        <span class="text-[10px] font-bold tracking-widest text-brandOrange uppercase">Customer Reviews</span>
+                    <div class="section-badge inline-flex items-center rounded-full bg-brandOrange/10 border border-brandOrange/20 mb-6 font-mono">
+                        <span class="section-badge-dot rounded-full bg-brandOrange"></span>
+                        <span class="section-badge-label text-brandOrange uppercase">Customer Reviews</span>
                     </div>
                     <h2 class="section-heading section-heading--lg text-white">What <span class="text-brandOrange">Measurable Growth</span> <span class="whitespace-nowrap">Looks Like</span></h2>
                     <p class="text-sm md:text-base text-slate-400 mt-6 leading-relaxed max-w-lg">Hear how customers describe the clarity, collaboration, and confidence behind their Scale Opus experience.</p>
@@ -2776,12 +2947,12 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-5 text-left space-y-6">
-                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brandOrange/10 border border-brandOrange/20 font-mono">
-                        <span class="w-1.5 h-1.5 rounded-full bg-brandOrange"></span>
-                        <span class="text-[10px] font-bold tracking-widest text-brandOrange uppercase">Let's Build</span>
+                    <div class="section-badge inline-flex items-center rounded-full bg-brandOrange/10 border border-brandOrange/20 font-mono">
+                        <span class="section-badge-dot rounded-full bg-brandOrange"></span>
+                        <span class="section-badge-label text-brandOrange uppercase">Let's Build</span>
                     </div>
                     
-                    <h2 class="section-heading section-heading--md text-white">
+                    <h2 class="section-heading section-heading--md text-white connect-heading">
                         Power Up Your <span class="text-brandOrange">Growth Engine.</span>
                     </h2>
                     
@@ -2791,7 +2962,7 @@
 
                     <div class="space-y-4 pt-4 font-mono">
                         <div class="flex items-center space-x-4">
-                            <div class="w-10 h-10 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-brandCyan text-sm">
+                            <div class="w-10 h-10 rounded-xl bg-white border border-slate-300 shadow-[0_10px_24px_rgba(15,23,42,0.12)] flex items-center justify-center text-brandCyan text-sm">
                                 <i class="fa-solid fa-envelope"></i>
                             </div>
                             <div>
@@ -2800,7 +2971,7 @@
                             </div>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="w-10 h-10 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-brandOrange text-sm">
+                            <div class="w-10 h-10 rounded-xl bg-white border border-slate-300 shadow-[0_10px_24px_rgba(15,23,42,0.12)] flex items-center justify-center text-brandOrange text-sm">
                                 <i class="fa-solid fa-globe"></i>
                             </div>
                             <div>
@@ -2813,13 +2984,13 @@
                     <div class="pt-4 font-mono">
                         <span class="block text-[9px] text-slate-500 uppercase tracking-widest mb-3">Enterprise Networks</span>
                         <div class="flex items-center space-x-3">
-                            <a href="https://www.facebook.com/ScaleOpus/" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 transition-all text-xs">
+                            <a href="https://www.facebook.com/ScaleOpus/" target="_blank" class="w-8 h-8 rounded-lg bg-white border border-slate-300 shadow-[0_10px_24px_rgba(15,23,42,0.12)] flex items-center justify-center text-slate-950 hover:text-white hover:bg-blue-600 transition-all text-xs">
                                 <i class="fa-brands fa-facebook-f"></i>
                             </a>
-                            <a href="https://www.instagram.com/scaleopus" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-pink-600 transition-all text-xs">
+                            <a href="https://www.instagram.com/scaleopus" target="_blank" class="w-8 h-8 rounded-lg bg-white border border-slate-300 shadow-[0_10px_24px_rgba(15,23,42,0.12)] flex items-center justify-center text-slate-950 hover:text-white hover:bg-pink-600 transition-all text-xs">
                                 <i class="fa-brands fa-instagram"></i>
                             </a>
-                            <a href="https://www.linkedin.com/company/scale-opus" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-700 transition-all text-xs">
+                            <a href="https://www.linkedin.com/company/scale-opus" target="_blank" class="w-8 h-8 rounded-lg bg-white border border-slate-300 shadow-[0_10px_24px_rgba(15,23,42,0.12)] flex items-center justify-center text-slate-950 hover:text-white hover:bg-blue-700 transition-all text-xs">
                                 <i class="fa-brands fa-linkedin-in"></i>
                             </a>
                         </div>
@@ -2827,8 +2998,8 @@
                 </div>
 
                 <div class="lg:col-span-7 lead-intake-panel rounded-3xl p-6 md:p-8 hover-scale relative overflow-hidden">
-                    <div class="relative z-10 flex items-center justify-between mb-6 font-mono">
-                        <span class="lead-intake-title text-xs font-bold text-slate-400 uppercase tracking-widest">Real-Time Lead Intake Pipeline</span>
+                    <div class="relative z-10 flex flex-wrap items-center justify-between gap-3 mb-6">
+                        <h3 class="lead-intake-title">Get In Touch</h3>
                         <div id="form-score-badge" class="bg-brandOrange/10 text-brandOrange border border-brandOrange/30 text-[9px] font-black tracking-wider uppercase px-2.5 py-0.5 rounded-full animate-pulse">
                             Lead Score: 0% Ready
                         </div>
@@ -2856,6 +3027,7 @@
                                     <option value="finance">Fintech &amp; Finance</option>
                                     <option value="service">Professional Services</option>
                                     <option value="logistics">Logistics &amp; Transport</option>
+                                    <option value="other">Other</option>
                                 </select>
                             </div>
                             <div>
@@ -2866,6 +3038,7 @@
                                     <option value="branding">High-End Web &amp; Brand Design</option>
                                     <option value="crm">Workflow Automation &amp; CRM</option>
                                     <option value="complete">All-Inclusive Scale Package</option>
+                                    <option value="other-enquiry">Other Enquiry</option>
                                 </select>
                             </div>
                         </div>
@@ -2877,7 +3050,7 @@
 
                         <div class="pt-2">
                             <button type="submit" class="w-full py-3.5 rounded-xl text-xs font-bold tracking-widest uppercase bg-brandOrange text-white hover:brightness-110 transition-all shadow-lg shadow-brandOrange/25">
-                                Request Custom Blueprint <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
+                                Send Message <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
                             </button>
                         </div>
 
@@ -2990,7 +3163,7 @@
         <i class="fa-solid fa-chevron-up text-sm"></i>
     </button>
 
-    <script src="./assets/chatbot-knowledge.js"></script>
+    <script src="./assets/chatbot-knowledge.js" defer></script>
     <script>
         function initTypewriterAnimations() {
             const headlines = document.querySelectorAll('.type-headline');
@@ -3712,9 +3885,29 @@
             event.preventDefault();
             const alertBox = document.getElementById('form-status-alert');
             const nameEl = document.getElementById('form-name');
+            const emailEl = document.getElementById('form-email');
+            const segmentEl = document.getElementById('form-segment');
+            const solutionEl = document.getElementById('form-solution');
+            const notesEl = document.getElementById('form-notes');
 
-            if (alertBox && nameEl) {
-                alertBox.innerText = `Thank you, ${nameEl.value}! Your growth assessment lead has been logged to the Opus CRM queue. Our lead architect will be in touch shortly.`;
+            if (alertBox && nameEl && emailEl && segmentEl && solutionEl && notesEl) {
+                const recipient = 'info.scaleopus@gmail.com';
+                const subject = `Scale Opus enquiry from ${nameEl.value || 'website visitor'}`;
+                const message = [
+                    'New Scale Opus website enquiry',
+                    '',
+                    `Contact Name: ${nameEl.value}`,
+                    `Email: ${emailEl.value}`,
+                    `Business Segment: ${segmentEl.options[segmentEl.selectedIndex]?.text || segmentEl.value}`,
+                    `Target Solution Pillar: ${solutionEl.options[solutionEl.selectedIndex]?.text || solutionEl.value}`,
+                    '',
+                    'Integration Target Notes / Goals:',
+                    notesEl.value || 'No notes provided.'
+                ].join('\n');
+
+                window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+
+                alertBox.innerText = `Thanks, ${nameEl.value}! Your email app is opening with the enquiry ready to send to Scale Opus.`;
                 alertBox.classList.remove('hidden');
 
                 document.getElementById('crm-lead-form').reset();
@@ -3782,7 +3975,7 @@
             updateActiveSection();
         }
 
-        window.onload = function() {
+        window.addEventListener('DOMContentLoaded', function() {
             const mobileBtn = document.getElementById('mobile-menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileBtn && mobileMenu) {
@@ -3804,7 +3997,7 @@
             updateFormProgress();
             window.addEventListener('scroll', handleGlobalScrolls, { passive: true });
             handleGlobalScrolls();
-        };
+        });
     </script>
 </body>
 </html>
