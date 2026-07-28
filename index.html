@@ -3,13 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scale Opus - We Build Your Business Growth Engine</title>
-    <link rel="icon" type="image/png" href="./assets/images/scale-opus-logo.png">
+    <!-- Primary Title & Description -->
+    <title>Scale Opus | Enterprise CRM, Branding & AI Prototypes</title>
+    <meta name="description" content="Power up your growth engine with Scale Opus. Comprehensive system assessments, custom CRM, branding, and conversational AI solutions built to scale your business.">
+
+    <!-- Canonical Tag (Tells Google scaleopus.com is the main domain) -->
+    <link rel="canonical" href="https://www.scaleopus.com/" />
+
+    <!-- Open Graph / Social Media Preview -->
+    <meta property="og:title" content="Scale Opus | Growth Engine & Systems">
+    <meta property="og:description" content="Scale Opus helps design customized CRM, branding, and conversational AI prototypes tailored for enterprise scale.">
+    <meta property="og:url" content="https://www.scaleopus.com/">
+    <!-- Favicon for Google Search & Browsers -->
+    <link rel="icon" type="image/png" sizes="48x48" href="./assets/images/scale-opus-favicon-48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/images/scale-opus-favicon-192.png">
+    <link rel="apple-touch-icon" href="./assets/images/scale-opus-favicon-192.png">
+    <link rel="preload" as="image" href="./assets/images/scale-opus-logo.png" fetchpriority="high">
+    <link rel="preload" as="font" type="font/ttf" href="./assets/fonts/space-grotesk-700.ttf">
+    <link rel="preload" as="font" type="font/ttf" href="./assets/fonts/inter-700.ttf">
     <link rel="stylesheet" href="./assets/site.css">
     <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
-    <script src="./assets/gsap.min.js" defer></script>
-    <script src="./assets/ghost-cursor-loader.js" defer></script>
-    <script src="./assets/reviews-card-stack-loader.js" defer></script>
+    <script src="./assets/gsap.min.js" defer fetchpriority="low"></script>
+    <script src="./assets/ghost-cursor-loader.js" defer fetchpriority="low"></script>
+    <script src="./assets/reviews-card-stack-loader.js" defer fetchpriority="low"></script>
     
     <style>
         @font-face {
@@ -49,6 +65,18 @@
             color: #f1f5f9;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+        }
+
+        #about,
+        #solutions,
+        #how-we-work,
+        #growth-engine,
+        #pricing,
+        #reviews,
+        #connect,
+        .scale-footer {
+            content-visibility: auto;
+            contain-intrinsic-size: 900px;
         }
 
         .dashboard-container {
@@ -550,10 +578,20 @@
             color: #ffffff;
         }
 
-        .lead-intake-panel label,
-        .lead-intake-title {
+        .lead-intake-panel label {
             color: #ffffff !important;
             text-shadow: 0 1px 14px rgba(0, 0, 0, 0.22);
+        }
+
+        .lead-intake-title {
+            color: #ff5e1a !important;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.25rem, 2vw, 1.65rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.025em;
+            text-transform: none;
+            text-shadow: 0 0 12px rgba(255, 94, 26, 0.42), 0 8px 26px rgba(255, 94, 26, 0.24);
         }
 
         .lead-intake-field::placeholder {
@@ -775,6 +813,11 @@
         .section-heading--xl { font-size: clamp(3.5rem, 6.2vw, 6rem); }
         .section-heading--lg { font-size: clamp(3rem, 5vw, 4.5rem); }
         .section-heading--md { font-size: clamp(2.65rem, 4vw, 3.75rem); }
+        .connect-heading { line-height: 1.08; }
+        .connect-heading .text-brandOrange {
+            display: inline-block;
+            margin-top: 0.08em;
+        }
         .back-to-top-button {
             width: 3.25rem;
             height: 3.75rem;
@@ -1113,12 +1156,13 @@
             height: 2.6rem;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255,255,255,0.18);
+            border: 1.5px solid rgba(15, 23, 42, 0.22);
             border-radius: 0.45rem;
             color: #ffffff;
-            transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+            transition: color 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
         }
-        .scale-footer-socials a:hover { border-color: #ff5e1a; color: #ff5e1a; background: rgba(255,94,26,0.08); }
+        .scale-footer-socials a:hover { border-color: #ff5e1a; color: #ff5e1a; background: rgba(255,94,26,0.08); box-shadow: 0 12px 28px rgba(255, 94, 26, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.55); }
         .scale-footer-title {
             color: #ffffff;
             font-size: 0.95rem;
@@ -1183,7 +1227,9 @@
         #connect input,
         #connect select,
         #connect textarea {
-            color: #030718 !important;
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+            caret-color: #ffffff;
         }
         #connect input::placeholder,
         #connect textarea::placeholder {
@@ -1527,7 +1573,7 @@
             <!-- Official Scale Opus logo -->
             <a href="#main-content" aria-label="Scale Opus home" class="flex shrink-0 items-center space-x-3 group">
                 <div class="site-logo-mark overflow-hidden rounded-lg bg-white flex items-center justify-center">
-                    <img src="./assets/images/scale-opus-logo.png" alt="" width="432" height="572" class="h-full w-full object-contain" fetchpriority="high">
+                    <img src="./assets/images/scale-opus-logo.png" alt="" width="432" height="572" class="h-full w-full object-contain" fetchpriority="high" decoding="async">
                 </div>
                 <div class="flex items-center">
                     <span class="site-logo-wordmark font-display font-bold text-white group-hover:text-brandOrange transition-colors">SCALE OPUS</span>
@@ -2769,7 +2815,7 @@
                         <span class="text-[10px] font-bold tracking-widest text-brandOrange uppercase">Let's Build</span>
                     </div>
                     
-                    <h2 class="section-heading section-heading--md text-white">
+                    <h2 class="section-heading section-heading--md text-white connect-heading">
                         Power Up Your <span class="text-brandOrange">Growth Engine.</span>
                     </h2>
                     
@@ -2779,16 +2825,16 @@
 
                     <div class="space-y-4 pt-4 font-mono">
                         <div class="flex items-center space-x-4">
-                            <div class="w-10 h-10 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-brandCyan text-sm">
+                            <div class="w-10 h-10 rounded-xl bg-white border border-slate-300 shadow-[0_10px_24px_rgba(15,23,42,0.12)] flex items-center justify-center text-brandCyan text-sm">
                                 <i class="fa-solid fa-envelope"></i>
                             </div>
                             <div>
                                 <span class="block text-[10px] text-slate-500 uppercase tracking-wider">Direct Support</span>
-                                <a href="mailto:scaleopus1@gmail.com" class="text-xs font-bold text-white hover:text-brandOrange transition-colors">scaleopus1@gmail.com</a>
+                                <a href="mailto:info.scaleopus@gmail.com" class="text-xs font-bold text-white hover:text-brandOrange transition-colors">info.scaleopus@gmail.com</a>
                             </div>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <div class="w-10 h-10 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-brandOrange text-sm">
+                            <div class="w-10 h-10 rounded-xl bg-white border border-slate-300 shadow-[0_10px_24px_rgba(15,23,42,0.12)] flex items-center justify-center text-brandOrange text-sm">
                                 <i class="fa-solid fa-globe"></i>
                             </div>
                             <div>
@@ -2801,13 +2847,13 @@
                     <div class="pt-4 font-mono">
                         <span class="block text-[9px] text-slate-500 uppercase tracking-widest mb-3">Enterprise Networks</span>
                         <div class="flex items-center space-x-3">
-                            <a href="https://www.facebook.com/ScaleOpus/" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 transition-all text-xs">
+                            <a href="https://www.facebook.com/ScaleOpus/" target="_blank" class="w-8 h-8 rounded-lg bg-white border border-slate-300 shadow-[0_10px_24px_rgba(15,23,42,0.12)] flex items-center justify-center text-slate-950 hover:text-white hover:bg-blue-600 transition-all text-xs">
                                 <i class="fa-brands fa-facebook-f"></i>
                             </a>
-                            <a href="https://www.instagram.com/scaleopus" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-pink-600 transition-all text-xs">
+                            <a href="https://www.instagram.com/scaleopus" target="_blank" class="w-8 h-8 rounded-lg bg-white border border-slate-300 shadow-[0_10px_24px_rgba(15,23,42,0.12)] flex items-center justify-center text-slate-950 hover:text-white hover:bg-pink-600 transition-all text-xs">
                                 <i class="fa-brands fa-instagram"></i>
                             </a>
-                            <a href="https://www.linkedin.com/company/scale-opus" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-700 transition-all text-xs">
+                            <a href="https://www.linkedin.com/company/scale-opus" target="_blank" class="w-8 h-8 rounded-lg bg-white border border-slate-300 shadow-[0_10px_24px_rgba(15,23,42,0.12)] flex items-center justify-center text-slate-950 hover:text-white hover:bg-blue-700 transition-all text-xs">
                                 <i class="fa-brands fa-linkedin-in"></i>
                             </a>
                         </div>
@@ -2816,7 +2862,7 @@
 
                 <div class="lg:col-span-7 lead-intake-panel rounded-3xl p-6 md:p-8 hover-scale relative overflow-hidden">
                     <div class="relative z-10 flex items-center justify-between mb-6 font-mono">
-                        <span class="lead-intake-title text-xs font-bold text-slate-400 uppercase tracking-widest">Real-Time Lead Intake Pipeline</span>
+                        <h3 class="lead-intake-title">Get In Touch</h3>
                         <div id="form-score-badge" class="bg-brandOrange/10 text-brandOrange border border-brandOrange/30 text-[9px] font-black tracking-wider uppercase px-2.5 py-0.5 rounded-full animate-pulse">
                             Lead Score: 0% Ready
                         </div>
@@ -2844,6 +2890,7 @@
                                     <option value="finance">Fintech &amp; Finance</option>
                                     <option value="service">Professional Services</option>
                                     <option value="logistics">Logistics &amp; Transport</option>
+                                    <option value="other">Other</option>
                                 </select>
                             </div>
                             <div>
@@ -2854,6 +2901,7 @@
                                     <option value="branding">High-End Web &amp; Brand Design</option>
                                     <option value="crm">Workflow Automation &amp; CRM</option>
                                     <option value="complete">All-Inclusive Scale Package</option>
+                                    <option value="other-enquiry">Other Enquiry</option>
                                 </select>
                             </div>
                         </div>
@@ -2865,7 +2913,7 @@
 
                         <div class="pt-2">
                             <button type="submit" class="w-full py-3.5 rounded-xl text-xs font-bold tracking-widest uppercase bg-brandOrange text-white hover:brightness-110 transition-all shadow-lg shadow-brandOrange/25">
-                                Request Custom Blueprint <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
+                                Send Message <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
                             </button>
                         </div>
 
@@ -2893,7 +2941,7 @@
                     <div class="scale-footer-rule"></div>
                     <p class="scale-footer-copy">Building intelligent websites, automations, and AI systems for modern business growth.</p>
                     <div class="scale-footer-socials">
-                        <a href="mailto:scaleopus1@gmail.com" aria-label="Email Scale Opus"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
+                        <a href="mailto:info.scaleopus@gmail.com" aria-label="Email Scale Opus"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
                         <a href="http://www.scaleopus.com/" target="_blank" aria-label="Visit Scale Opus website"><i class="fa-solid fa-globe" aria-hidden="true"></i></a>
                         <a href="https://wa.me/8801816960982" target="_blank" rel="noopener" aria-label="Message Scale Opus on WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
                         <a href="https://www.instagram.com/scaleopus" target="_blank" rel="noopener" aria-label="Visit Scale Opus on Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
@@ -2930,7 +2978,7 @@
                     <div class="scale-footer-rule"></div>
                     <div class="scale-footer-contact">
                         <a href="#connect"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Remote &amp; Global</span></a>
-                        <a href="mailto:scaleopus1@gmail.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i><span>scaleopus1@gmail.com</span></a>
+                        <a href="mailto:info.scaleopus@gmail.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i><span>info.scaleopus@gmail.com</span></a>
                         <a href="https://wa.me/8801816960982" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span>Schedule a discussion</span></a>
                     </div>
                 </div>
@@ -2978,7 +3026,7 @@
         <i class="fa-solid fa-chevron-up text-sm"></i>
     </button>
 
-    <script src="./assets/chatbot-knowledge.js"></script>
+    <script src="./assets/chatbot-knowledge.js" defer></script>
     <script>
         function initTypewriterAnimations() {
             const headlines = document.querySelectorAll('.type-headline');
@@ -3700,9 +3748,29 @@
             event.preventDefault();
             const alertBox = document.getElementById('form-status-alert');
             const nameEl = document.getElementById('form-name');
+            const emailEl = document.getElementById('form-email');
+            const segmentEl = document.getElementById('form-segment');
+            const solutionEl = document.getElementById('form-solution');
+            const notesEl = document.getElementById('form-notes');
 
-            if (alertBox && nameEl) {
-                alertBox.innerText = `Thank you, ${nameEl.value}! Your growth assessment lead has been logged to the Opus CRM queue. Our lead architect will be in touch shortly.`;
+            if (alertBox && nameEl && emailEl && segmentEl && solutionEl && notesEl) {
+                const recipient = 'info.scaleopus@gmail.com';
+                const subject = `Scale Opus enquiry from ${nameEl.value || 'website visitor'}`;
+                const message = [
+                    'New Scale Opus website enquiry',
+                    '',
+                    `Contact Name: ${nameEl.value}`,
+                    `Email: ${emailEl.value}`,
+                    `Business Segment: ${segmentEl.options[segmentEl.selectedIndex]?.text || segmentEl.value}`,
+                    `Target Solution Pillar: ${solutionEl.options[solutionEl.selectedIndex]?.text || solutionEl.value}`,
+                    '',
+                    'Integration Target Notes / Goals:',
+                    notesEl.value || 'No notes provided.'
+                ].join('\n');
+
+                window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+
+                alertBox.innerText = `Thanks, ${nameEl.value}! Your email app is opening with the enquiry ready to send to Scale Opus.`;
                 alertBox.classList.remove('hidden');
 
                 document.getElementById('crm-lead-form').reset();
@@ -3770,7 +3838,7 @@
             updateActiveSection();
         }
 
-        window.onload = function() {
+        window.addEventListener('DOMContentLoaded', function() {
             const mobileBtn = document.getElementById('mobile-menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileBtn && mobileMenu) {
@@ -3792,7 +3860,7 @@
             updateFormProgress();
             window.addEventListener('scroll', handleGlobalScrolls, { passive: true });
             handleGlobalScrolls();
-        };
+        });
     </script>
 </body>
 </html>
