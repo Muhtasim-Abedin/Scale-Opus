@@ -1004,21 +1004,54 @@
                 position: relative;
                 z-index: 1;
                 margin-top: 2rem;
-                min-height: 390px;
+                min-height: clamp(18rem, 72vw, 26rem);
                 padding-top: 1.5rem;
+                overflow: visible;
             }
             .card-swap-stage {
-                transform: translateX(-0.35rem) scale(0.9);
+                width: min(34rem, 92vw) !important;
+                height: clamp(17rem, 64vw, 24rem) !important;
+                transform: translateX(-0.1rem) scale(0.94);
                 transform-origin: top center;
+            }
+            .card-swap-item {
+                width: min(31rem, 80vw) !important;
+                height: min(21.75rem, 56vw) !important;
+                border-radius: clamp(1rem, 4vw, 1.4rem);
             }
         }
         @media (max-width: 480px) {
             .about-card-column {
-                margin-top: 2.5rem;
-                min-height: 360px;
+                margin-top: 2rem;
+                min-height: clamp(18.5rem, 78vw, 22rem);
+                padding-top: 1rem;
             }
             .card-swap-stage {
-                transform: translateX(-0.45rem) scale(0.84);
+                width: 100% !important;
+                height: clamp(18rem, 76vw, 21rem) !important;
+                transform: translateX(-0.85rem) scale(0.96);
+            }
+            .card-swap-item {
+                width: min(20.75rem, 78vw) !important;
+                height: min(14.5rem, 54.5vw) !important;
+                padding: 1.35rem !important;
+            }
+            .card-swap-item .w-12 {
+                width: 2.6rem !important;
+                height: 2.6rem !important;
+                border-radius: 0.85rem !important;
+            }
+            .card-swap-item h3 {
+                font-size: clamp(1.15rem, 5.6vw, 1.45rem) !important;
+                line-height: 1.05 !important;
+            }
+            .card-swap-item p {
+                font-size: clamp(0.7rem, 3.15vw, 0.82rem) !important;
+                line-height: 1.38 !important;
+            }
+            .card-swap-item .text-\[10px\] {
+                font-size: 0.48rem !important;
+                line-height: 1.1 !important;
             }
         }
         @media (min-width: 1024px) {
@@ -3797,8 +3830,8 @@
             // Layout offsets based on screen width
             const isSmall = window.innerWidth < 640;
             const isMedium = window.innerWidth < 1024;
-            const cardDistance = isSmall ? 24 : 45;
-            const verticalDistance = isSmall ? -24 : (isMedium ? -28 : 50);
+            const cardDistance = isSmall ? 28 : 45;
+            const verticalDistance = isSmall ? 24 : (isMedium ? 34 : 50);
             const skewAmount = 5;
             const delay = 2000; // Accelerated to 2s cycle time
 
