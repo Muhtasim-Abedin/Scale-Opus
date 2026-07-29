@@ -2205,6 +2205,46 @@
                 transition-duration: 0.01ms !important;
             }
         }
+        /* Engine Hub panels: premium dark gradients with clear separation from the black section */
+        .engine-hub-panel {
+            border-width: 1px;
+            border-style: solid;
+            background-color: #0e1017;
+            background-repeat: no-repeat;
+            box-shadow:
+                0 22px 55px rgba(0, 0, 0, 0.48),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            transition:
+                transform 300ms ease,
+                border-color 300ms ease,
+                box-shadow 300ms ease;
+        }
+
+        .engine-hub-panel--voice,
+        .engine-hub-panel--bot {
+            border-color: rgba(0, 240, 255, 0.42);
+            background-image:
+                radial-gradient(circle at 8% 3%, rgba(0, 240, 255, 0.18), transparent 35%),
+                radial-gradient(circle at 94% 100%, rgba(112, 68, 255, 0.16), transparent 40%),
+                linear-gradient(145deg, #111c29 0%, #0d111d 48%, #111025 100%);
+            box-shadow:
+                0 0 0 1px rgba(0, 240, 255, 0.08),
+                0 0 32px rgba(0, 240, 255, 0.17),
+                0 22px 55px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.07);
+        }
+
+        @media (hover: hover) {
+            .engine-hub-panel--voice:hover,
+            .engine-hub-panel--bot:hover {
+                border-color: rgba(0, 240, 255, 0.68);
+                box-shadow:
+                    0 0 0 1px rgba(0, 240, 255, 0.12),
+                    0 0 42px rgba(0, 240, 255, 0.23),
+                    0 24px 60px rgba(0, 0, 0, 0.54),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+            }
+        }
     </style>
 </head>
 <body class="bg-brandDark antialiased text-slate-200">
@@ -3144,7 +3184,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
                 <!-- AI Voice Simulator -->
-                <div class="lg:col-span-6 bg-[#0e1017] border border-white/10 rounded-3xl p-6 md:p-8 flex flex-col justify-between hover-scale relative overflow-hidden">
+                <div class="engine-hub-panel engine-hub-panel--voice lg:col-span-6 rounded-3xl p-6 md:p-8 flex flex-col justify-between hover-scale relative overflow-hidden">
                     <div>
                         <div class="flex items-center justify-between mb-6 font-mono">
                             <div class="flex items-center space-x-3">
@@ -3162,11 +3202,9 @@
                         <div class="grid grid-cols-2 gap-3 mb-6 font-mono">
                             <button type="button" aria-pressed="true" onclick="setVoiceScenario('support')" id="v-scenario-support" class="p-3 rounded-xl border border-brandCyan bg-brandCyan/10 text-left transition-all">
                                 <div class="text-xs font-bold text-white font-display">24/7 Client Support</div>
-                                <div class="text-[9px] text-slate-400 mt-0.5">Warm, reassuring conversation with natural pauses</div>
                             </button>
                             <button type="button" aria-pressed="false" onclick="setVoiceScenario('sales')" id="v-scenario-sales" class="p-3 rounded-xl border border-white/10 bg-white/[0.02] text-left hover:border-slate-600 transition-all">
                                 <div class="text-xs font-bold text-slate-300 font-display">Sales Qualification</div>
-                                <div class="text-[9px] text-slate-400 mt-0.5">Curious, upbeat discovery without the hard sell</div>
                             </button>
                         </div>
 
@@ -3195,7 +3233,7 @@
                 </div>
 
                 <!-- Custom Bot Sandbox -->
-                <div class="lg:col-span-6 bg-[#0e1017] border border-white/10 rounded-3xl p-6 md:p-8 flex flex-col justify-between hover-scale relative overflow-hidden">
+                <div class="engine-hub-panel engine-hub-panel--bot lg:col-span-6 rounded-3xl p-6 md:p-8 flex flex-col justify-between hover-scale relative overflow-hidden">
                     <div>
                         <div class="flex items-center justify-between mb-4 font-mono">
                             <div class="flex items-center space-x-3">
